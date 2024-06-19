@@ -10,16 +10,19 @@ public class Book {
     private String bookTitle;
     //código identificador universal del libro
     private String bookISBN;
+    //autor del libro
+    private String bookAuthor;
     //representa disponiblidad del libro
     private boolean bookAvailable;
 
     public Book() {
     }
 
-    public Book(int bookId, String bookTitle, String bookISBN, boolean bookAvailable) {
+    public Book(int bookId, String bookTitle, String bookISBN, String bookAuthor, boolean bookAvailable) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookISBN = bookISBN;
+        this.bookAuthor = bookAuthor;
         this.bookAvailable = bookAvailable;
     }
 
@@ -47,6 +50,14 @@ public class Book {
         this.bookISBN = bookISBN;
     }
 
+    public String getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
+    }
+
     public boolean isBookAvailable() {
         return bookAvailable;
     }
@@ -59,9 +70,10 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "Id=" + bookId +
-                ", Title='" + bookTitle + '\'' +
+                ", Titulo='" + bookTitle + '\'' +
                 ", ISBN='" + bookISBN + '\'' +
-                ", Available=" + bookAvailable +
+                ", Autor='" + bookAuthor + '\'' +
+                ", Disponible=" + bookAvailable +
                 '}';
     }
 }

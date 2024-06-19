@@ -41,11 +41,13 @@ public class Main {
                     //esta es una linea problematica para evitar saltar el siguiente parametro, es necesario pero omitir
                     SCANNER.nextLine();
                     System.out.println("Ingrese título: ");
-                    String title = SCANNER.nextLine();
+                    final String TITLE = SCANNER.nextLine();
+                    System.out.println("Ingrese autor: ");
+                    final String AUTHOR = SCANNER.nextLine();
                     System.out.println("Ingrese ISBN: ");
-                    String isbn = SCANNER.nextLine();
+                    final String ISBN = SCANNER.nextLine();
                     //Por defecto al registrar el libro va a estar disponible
-                    final Book newBook = new Book(id, title, isbn, true);
+                    final Book newBook = new Book(id, TITLE, ISBN, AUTHOR, true);
                     BOOKS.add(newBook);
                     break;
                 default:
