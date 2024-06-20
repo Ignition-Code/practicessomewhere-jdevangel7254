@@ -1,7 +1,9 @@
 package net.ms.main;
 
+import net.ms.function.BookFunction;
 import net.ms.model.Book;
 
+import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -30,6 +32,7 @@ public class Main {
                     if (BOOKS.isEmpty()) {
                         System.out.println("\n\t<Ningún libro disponible>");
                     } else {
+                        System.out.println();
                         for (Book book : BOOKS) {
                             System.out.println(book.toString());
                         }
@@ -47,8 +50,23 @@ public class Main {
                     System.out.println("Ingrese ISBN: ");
                     final String ISBN = SCANNER.nextLine();
                     //Por defecto al registrar el libro va a estar disponible
-                    final Book newBook = new Book(id, TITLE, ISBN, AUTHOR, true);
-                    BOOKS.add(newBook);
+                    final Book NEW_BOOK = new Book(id, TITLE, ISBN, AUTHOR, true);
+                    new BookFunction(BOOKS).addBook(NEW_BOOK);
+                    break;
+                case 3:
+                    SCANNER.nextLine();
+                    System.out.println("Ingrese búsqueda: ");
+                    final String QUERY = SCANNER.nextLine();
+                    final List<Book> BOOKS_RESULT = new BookFunction(BOOKS).searchBook(QUERY);
+                    System.out.println("-------------------------------------------------------");
+                    if (BOOKS_RESULT.isEmpty()) {
+                        System.out.println("\n\t<Ningún libro disponible>");
+                    } else {
+                        System.out.println();
+                        for (Book book : BOOKS_RESULT) {
+                            System.out.println(book.toString());
+                        }
+                    }
                     break;
                 default:
                     System.out.println("** Opción no válida **");
