@@ -39,7 +39,7 @@ public class User {
     public String toString() {
         return "Usuario {" +
                 "nombre='" + userName + '\'' +
-                ", contraseña='" + userPassword + '\'' +
+                ", contraseña='" + userPassword.replace("", "*") + '\'' +
                 ", admin=" + userAdmin +
                 '}';
     }

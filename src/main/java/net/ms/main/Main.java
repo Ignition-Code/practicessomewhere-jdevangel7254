@@ -4,6 +4,7 @@ import net.ms.function.BookFunction;
 import net.ms.function.UserFunction;
 import net.ms.model.Book;
 import net.ms.model.User;
+import net.ms.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        //Opción de salida por defecto
+        int exitOption = 2;
         int option = 0;
+
+        //Nivel de acceso por defecto es usuario
+        Constants.MENU currentMenu = Constants.MENU.USER;
+        //Usuario conectado por defecto es null
         User userConnected = null;
 
         final List<Book> BOOKS = new ArrayList<>();
@@ -21,30 +28,44 @@ public class Main {
         //Asignamos usuario por defecto
         USERS.add(new User("admin", "", true));
 
+        //Funciones
+        final UserFunction USER_FUNCTIONS = new UserFunction(USERS, SCANNER);
+        final BookFunction BOOK_FUNCTIONS = new BookFunction(BOOKS);
+
         System.out.println("=======================================================");
         System.out.println("=== BIENVENIDO AL SISTEMA DE GESTION DE BIBLIOTECAS ===");
         System.out.println("=======================================================");
-        while (option != 4) {
+        while (option != exitOption) {
             if (userConnected == null) {
-                System.out.println("-------------------- INICIAR SESIÓN -------------------");
-                System.out.println("Nombre de usuario: ");
-                final String USERNAME = SCANNER.nextLine();
-                System.out.println("Contraseña: ");
-                final String PASSWORD = SCANNER.nextLine();
-                userConnected = new UserFunction(USERS).login(USERNAME, PASSWORD);
-                if (userConnected == null) {
-                    System.out.println("-------------------------------------------------------");
-                    System.out.println("\n\t<Credenciales incorrectas!>\n");
+                System.out.println("\n------------------------- MENU ------------------------");
+                System.out.println("\t-> [1] Iniciar sesión");
+                System.out.println("\t-> [2] Salir");
+                option = SCANNER.nextInt();
+                if (option == 1) {
+                    System.out.println("-------------------- INICIAR SESIÓN -------------------");
+                    SCANNER.nextLine();
+                    System.out.println("Nombre de usuario: ");
+                    final String USERNAME = SCANNER.nextLine();
+                    System.out.println("Contraseña: ");
+                    final String PASSWORD = SCANNER.nextLine();
+                    userConnected = USER_FUNCTIONS.login(USERNAME, PASSWORD);
+                    if (userConnected == null) {
+                        System.out.println("-------------------------------------------------------");
+                        System.out.println("\n\t<Credenciales incorrectas!>\n");
+                    }
+                } else {
+                    option = exitOption;
                 }
             } else {
-                System.out.println("\n------------------------- MENU ------------------------");
-                System.out.println("\t-> [1] Lista de libros disponibles");
-                System.out.println("\t-> [2] Agregar libro");
-                System.out.println("\t-> [3] Buscar libro");
-                System.out.println("\t-> [4] Salir");
-                option = SCANNER.nextInt();
+                option = switch (currentMenu) {
+                    case USER -> {
+                        exitOption = 5;
+                        yield USER_FUNCTIONS.userMenu(userConnected);
+                    }
+                    default -> exitOption;
+                };
 
-                switch (option) {
+                /*switch (option) {
                     case 1:
                         System.out.println("-------------------------------------------------------");
                         if (BOOKS.isEmpty()) {
@@ -88,7 +109,7 @@ public class Main {
                         break;
                     default:
                         System.out.println("** Opción no válida **");
-                }
+                }*/
             }
         }
         SCANNER.close();

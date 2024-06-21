@@ -29,4 +29,14 @@ public class BookFunction {
 
         return booksFound;
     }
+
+    //Menu de libros
+    public int bookMenu(){
+        System.out.println("\n------------------------- MENU ------------------------");
+        System.out.println("\t-> [1] Lista de libros disponibles");
+        System.out.println("\t-> [2] Agregar libro");
+        System.out.println("\t-> [3] Buscar libro");
+        System.out.println("\t-> [4] Salir");
+        return 0;
+    }
 }
