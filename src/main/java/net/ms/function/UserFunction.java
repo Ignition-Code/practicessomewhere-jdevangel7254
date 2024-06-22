@@ -88,7 +88,7 @@ public class UserFunction {
                     final String PASSWORD = SCANNER.nextLine();
                     System.out.println("Administrador? [S] o [N]");
                     final boolean ADMIN = SCANNER.nextLine().equalsIgnoreCase("s");
-                    userRegister(ID, USERNAME, PASSWORD, ADMIN);
+                    this.userRegister(ID, USERNAME, PASSWORD, ADMIN);
                     break;
                 case 5:
                     System.out.println("Seleccionar usuario a eliminar [ ]");
@@ -142,7 +142,7 @@ public class UserFunction {
                     }
                     break;
                 case 3:
-                    return 5;
+                    return 6;
                 case 4:
                     return 7;
                 case 5:

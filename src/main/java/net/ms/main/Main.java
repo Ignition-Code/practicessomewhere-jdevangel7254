@@ -66,51 +66,6 @@ public class Main {
                 } else if (option == 7) {
                     userConnected = null;
                 }
-                /*switch (option) {
-                    case 1:
-                        System.out.println("-------------------------------------------------------");
-                        if (BOOKS.isEmpty()) {
-                            System.out.println("\n\t<Ningún libro disponible>");
-                        } else {
-                            System.out.println();
-                            for (Book book : BOOKS) {
-                                System.out.println(book.toString());
-                            }
-                        }
-                        break;
-                    case 2:
-                        //generamos id de acuerdo a la cantidad de libros
-                        final int id = BOOKS.size() + 1;
-                        //esta es una linea problematica para evitar saltar el siguiente parametro, es necesario pero omitir
-                        SCANNER.nextLine();
-                        System.out.println("Ingrese título: ");
-                        final String TITLE = SCANNER.nextLine();
-                        System.out.println("Ingrese autor: ");
-                        final String AUTHOR = SCANNER.nextLine();
-                        System.out.println("Ingrese ISBN: ");
-                        final String ISBN = SCANNER.nextLine();
-                        //Por defecto al registrar el libro va a estar disponible
-                        final Book NEW_BOOK = new Book(id, TITLE, ISBN, AUTHOR, true);
-                        new BookFunction(BOOKS).addBook(NEW_BOOK);
-                        break;
-                    case 3:
-                        SCANNER.nextLine();
-                        System.out.println("Ingrese búsqueda: ");
-                        final String QUERY = SCANNER.nextLine();
-                        final List<Book> BOOKS_RESULT = new BookFunction(BOOKS).searchBook(QUERY);
-                        System.out.println("-------------------------------------------------------");
-                        if (BOOKS_RESULT.isEmpty()) {
-                            System.out.println("\n\t<Ningún libro disponible>");
-                        } else {
-                            System.out.println();
-                            for (Book book : BOOKS_RESULT) {
-                                System.out.println(book.toString());
-                            }
-                        }
-                        break;
-                    default:
-                        System.out.println("** Opción no válida **");
-                }*/
             }
         }
         SCANNER.close();
